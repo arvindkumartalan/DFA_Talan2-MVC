@@ -1,0 +1,195 @@
+﻿@model DFA_Talan2.DFA_DB.userInfo
+
+
+
+@{
+    Layout = null;
+}
+
+
+<style>
+    .error{
+        color:#ff0000
+    }
+</style>
+
+<link rel="shortcut icon" type="image/png" href="~/documentation/assets/images/icon/favicon.ico">
+<link rel="stylesheet" href="~/documentation/assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="~/documentation/assets/css/font-awesome.min.css">
+<link rel="stylesheet" href="~/documentation/assets/css/themify-icons.css">
+<link rel="stylesheet" href="~/documentation/assets/css/metisMenu.css">
+<link rel="stylesheet" href="~/documentation/assets/css/owl.carousel.min.css">
+<link rel="stylesheet" href="~/documentation/assets/css/slicknav.min.css">
+<!-- amchart css -->
+<link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+<!-- others css -->
+<link rel="stylesheet" href="~/documentation/assets/css/typography.css">
+<link rel="stylesheet" href="~/documentation/assets/css/default-css.css">
+<link rel="stylesheet" href="~/documentation/assets/css/styles.css">
+<link rel="stylesheet" href="~/documentation/assets/css/responsive.css">
+<!-- modernizr css -->
+<script src="~/documentation/assets/js/vendor/modernizr-2.8.3.min.js"></script>
+
+
+<div id="preloader">
+    <div class="loader"></div>
+</div>
+<!-- preloader area end -->
+<!-- login area start -->
+<div class="login-area login-s2">
+    <div class="container">
+        <div class="login-box ptb--100">
+            @using (Html.BeginForm("SignUp", "Home", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="login-form-head">
+                    <h4>Sign up</h4>
+                    <p>Hello there, Sign up and Join with Us</p>
+                </div>
+                <div class="login-form-body">
+                    @Html.HiddenFor(m => m.userId)
+                    <div class="form-gp">
+                        <label for="exampleInputName1">Full Name*</label>
+                        <i class="ti-user"></i>
+                        @*<input type="text" id="exampleInputName1">*@
+                        @Html.TextBoxFor(model => model.userName, "", new { @class = "form-control", @required = "required" })
+                        @Html.ValidationMessageFor(model => model.userName, "", new { @class = "error" })
+
+                        <div class="text-danger"></div>
+                    </div>
+                    <div class="form-gp">
+                        <label for="exampleInputEmail1">Email address*</label>
+                        <i class="ti-email"></i>
+                        @*<input type="email" id="exampleInputEmail1">*@
+                        @Html.TextBoxFor(model => model.userMail, "", new { @class = "form-control", @required = "required" })
+                        @Html.ValidationMessageFor(model => model.userMail, "", new { @class = "error" })
+
+                        <div class="text-danger"></div>
+                    </div>
+                    <div class="form-gp">
+                        <label for="exampleInputGender">Gender*</label>
+                        <i class="ti-lock"></i>
+                        @*<input type="password" id="exampleInputPassword1">*@
+                        @Html.TextBoxFor(model => model.userGender, "", new { @class = "form-control", @required = "required" })
+                        @Html.ValidationMessageFor(model => model.userGender, "", new { @class = "error" })
+
+                        <div class="text-danger"></div>
+                    </div>
+                    <div class="form-gp">
+                        <label for="exampleInputPassword2">Password*</label>
+                        <i class="ti-lock"></i>
+                        @*<input type="password" id="exampleInputPassword2">*@
+                        @Html.TextBoxFor(model => model.userPassword, "", new { @class = "form-control", @required = "required" })
+                        @Html.ValidationMessageFor(model => model.userPassword, "", new { @class = "error" })
+
+                        <div class="text-danger"></div>
+                    </div>
+                    <div class="submit-btn-area">
+                        <button id="form_submit" type="submit">Submit <i class="ti-arrow-right"></i></button>
+                        <div class="login-other row mt-4">
+                            <div class="col-6">
+                                <a class="fb-login" href="#">Sign up with <i class="fa fa-facebook"></i></a>
+                            </div>
+                            <div class="col-6">
+                                <a class="google-login" href="#">Sign up with <i class="fa fa-google"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-footer text-center mt-5">
+                        <p class="text-muted">Already have an account? <a href="@Url.Action("Login","Home")">Sign in</a></p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+<script src="~/documentation/assets/js/vendor/jquery-2.2.4.min.js"></script>
+<!-- bootstrap 4 js -->
+<script src="~/documentation/assets/js/popper.min.js"></script>
+<script src="~/documentation/assets/js/bootstrap.min.js"></script>
+<script src="~/documentation/assets/js/owl.carousel.min.js"></script>
+<script src="~/documentation/assets/js/metisMenu.min.js"></script>
+<script src="~/documentation/assets/js/jquery.slimscroll.min.js"></script>
+<script src="assets/js/jquery.slicknav.min.js"></script>
+
+<!-- others plugins -->
+<script src="~/documentation/assets/js/plugins.js"></script>
+<script src="~/documentation/assets/js/scripts.js"></script>
+
+
+
+@*
+
+@using (Html.BeginForm("SignUp", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div style="padding:80px" align="center">
+
+        <h2>Sign Up</h2>
+        @Html.HiddenFor(m => m.userId)
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label>Enter Your Name* :</label>
+            <br />
+            @Html.TextBoxFor(model => model.userName, "", new { @class = "form-control", data_val = "true", @placeholder = " Name" })
+            @Html.ValidationMessageFor(model => model.userName, "", new { @class = "error" })
+        </div>
+
+        <div class="form-group">
+            <label>Enter Your Email* :</label>
+            <br />
+            @Html.TextBoxFor(model => model.userMail, "", new { @class = "form-control", data_val = "true", @placeholder = " Email" })
+            @Html.ValidationMessageFor(model => model.userMail, "", new { @class = "error" })
+        </div>
+
+        <div class="form-group">
+            <label>Enter Your Gender* :</label>
+            <br />
+            @Html.TextBoxFor(model => model.userGender, "", new { @class = "form-control", data_val = "true", @placeholder = "Gender" })
+            @Html.ValidationMessageFor(model => model.userGender, "", new { @class = "error" })
+        </div>
+
+        <div class="form-group">
+            <label>Enter Your Password* :</label>
+            <br />
+            @Html.TextBoxFor(model => model.userPassword, "", new { @class = "form-control", data_val = "true", @placeholder = " Password" })
+            @Html.ValidationMessageFor(model => model.userPassword, "", new { @class = "error" })
+        </div>
+        <br />
+        <div class="col-12">
+            <div class="form-check">
+                <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required>
+                <label class="form-check-label" for="acceptTerms">I agree and accept the <a href="#">terms and conditions</a></label>
+                <div class="invalid-feedback">You must agree before submitting.</div>
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            @if (ViewBag.edit == "Edit")
+            {
+                <button type="submit" class="btn btn-default w-100 btn-success btn btn-outline-danger">Update Password </button>
+            }
+            else
+            {
+                <button type="submit" class="btn btn-default w-100 btn-success btn btn-outline-danger">Sign Up </button>
+            }
+            <br /> <br />
+            <button type="reset" class="btn btn-default w-100 btn-success btn btn-outline-danger">Reset</button>
+        </div>
+        <br />
+
+
+
+        <p>
+            Already SignUp?
+            <a href="@Url.Action("Login", "Home")">Click Here</a>
+        </p>
+        @Html.ActionLink("Back To Home", "Dashboard", "Home")
+    </div>
+}
+*@

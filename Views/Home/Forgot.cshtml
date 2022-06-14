@@ -1,0 +1,24 @@
+﻿@model DFA_Talan2.DFA_DB.userInfo
+
+<h2>@TempData["Email"]</h2>
+
+
+@using (Html.BeginForm("Forgot", "Home", FormMethod.Post))
+{
+     <div style="padding:80px" align="center">
+        <div class="form-group">
+            <label>Enter Your Email :</label>
+            <br />
+            <br />
+            @Html.TextBoxFor(model => model.userMail, "", new { @class = "form-control", data_val = "true", @placeholder = " Email" })
+            @Html.ValidationMessageFor(model => model.userMail, "", new { @class = "error" })
+        </div>
+
+        <br />
+        <div class="form-group">
+            
+                <button type="submit" class="btn btn-default w-100 btn-success btn btn-outline-danger">Update Password </button>
+          
+        </div>
+</div>
+}  

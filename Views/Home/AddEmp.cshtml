@@ -1,0 +1,55 @@
+﻿@model DFA_Talan2.Models.Employee
+
+@{
+    ViewBag.Title = "AddEmp";
+}
+<style>
+    .color {
+        background-color: #00ffff
+    }
+</style>
+
+@using (Html.BeginForm("AddEmp", "Home", FormMethod.Post))
+{
+<div style="padding:80px" align="center" class="color">
+    @if (ViewBag.edit == "Edit")
+    {
+        <h1>Update Employee Details</h1>
+    }
+    else
+    {
+        <h1>New Employee Details</h1>
+    }
+    <div>
+
+        @Html.HiddenFor(m => m.empid)
+    </div>
+    <div>
+        <label>Enter Your Name</label>
+        @Html.TextBoxFor(m => m.empname, new { @class = "form-control", data_val = "true", @placeholder = "Enter your name" })
+        @Html.ValidationMessageFor(m => m.empname, "", new { @class = "error" })
+    </div>
+    <div>
+        <label>Enter Your Mail</label>
+        @Html.TextBoxFor(m => m.empmail, new { @class = "form-control", data_val = "true", @placeholder = "Enter your mail" })
+        @Html.ValidationMessageFor(m => m.empmail, "", new { @class = "error" })
+    </div>
+    <div>
+        <label>Enter Your Salary</label>
+        @Html.TextBoxFor(m => m.empsalary, new { @class = "form-control", data_val = "true", @placeholder = "Enter your salary" })
+        @Html.ValidationMessageFor(m => m.empsalary, "", new { @class = "error" })
+    </div>
+    <br />
+    <div>
+        @if (ViewBag.edit == "Edit")
+        {
+            <button type="submit" class="btn btn-outline-danger">Update</button>
+        }
+        else
+        {
+            <button type="submit" class="btn btn-outline-danger">Submit</button>
+        }
+        <button type="reset" class="btn btn-outline-danger">Clear</button>
+    </div>
+</div>
+}

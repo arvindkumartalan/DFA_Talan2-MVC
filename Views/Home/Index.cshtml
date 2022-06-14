@@ -1,0 +1,45 @@
+﻿@model List<DFA_Talan2.Models.Employee>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<style>
+    .color {
+        background-color: #00ffff
+    }
+</style>
+<div style="padding:20px" class="color">
+    <h2>All Employee Detail</h2>
+
+    <p>
+        @Html.ActionLink("Create New Employee", "AddEmp", "Home")
+    </p>
+
+    <table class="table table-bordered table-hover table-condensed table-responsive table-striped table-primary table-responsive-sm" id="MyTable" >
+        <thead style="background-color:powderblue">
+            <tr>
+                <th>empid</th>
+                <th>empname</th>
+                <th>empmail</th>
+                <th>empsalary</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+           
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.empid</td>
+                        <td>@item.empname</td>
+                        <td>@item.empmail</td>
+                        <td>@item.empsalary</td>
+                        <td><a class="btn btn-success btn btn-outline-danger" href="@Url.Action("Edit","Home",new { Id= item.empid})">Edit</a></td>
+                        <td><a class="btn btn-success btn btn-outline-danger" href="@Url.Action("Delete","Home",new { Id= item.empid})">Delete</a></td>
+                    </tr>
+                }
+            
+        </tbody>
+    </table>
+</div>        
